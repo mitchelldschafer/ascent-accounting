@@ -38,17 +38,16 @@ export default function ServicesPanel() {
   const container = useRef(null);
   
   useGSAP(() => {
-    gsap.from('.service-anim', {
-      scrollTrigger: {
+    gsap.fromTo('.service-anim', { y: 50, opacity: 0 }, { 
+scrollTrigger: {
         trigger: container.current,
         start: 'top 80%',
       },
-      y: 50,
-      opacity: 0,
       duration: 1,
       stagger: 0.15,
-      ease: 'power3.out'
-    });
+      ease: 'power3.out',
+ y: 0, opacity: 1, clearProps: 'all' 
+});
   }, { scope: container });
 
   const featured = services.find(s => s.featured);

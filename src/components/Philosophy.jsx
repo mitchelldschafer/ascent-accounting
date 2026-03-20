@@ -20,17 +20,16 @@ export default function Philosophy() {
       ease: 'none'
     });
 
-    gsap.from('.phil-line', {
-      scrollTrigger: {
+    gsap.fromTo('.phil-line', { y: 40, opacity: 0 }, { 
+scrollTrigger: {
         trigger: container.current,
         start: 'top 60%',
       },
-      y: 40,
-      opacity: 0,
       duration: 1.2,
       stagger: 0.15,
-      ease: 'power3.out'
-    });
+      ease: 'power3.out',
+ y: 0, opacity: 1, clearProps: 'all' 
+});
   }, { scope: container });
 
   return (

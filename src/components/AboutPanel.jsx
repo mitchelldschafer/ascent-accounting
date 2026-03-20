@@ -9,30 +9,28 @@ export default function AboutPanel() {
   const container = useRef(null);
 
   useGSAP(() => {
-    gsap.from('.manifesto-word', {
-      scrollTrigger: {
+    gsap.fromTo('.manifesto-word', { y: 20, opacity: 0 }, { 
+scrollTrigger: {
         trigger: container.current,
         start: 'top 75%',
       },
-      opacity: 0,
-      y: 20,
       rotateX: -20,
       stagger: 0.05,
       duration: 0.8,
-      ease: 'power3.out'
-    });
+      ease: 'power3.out',
+ y: 0, opacity: 1, clearProps: 'all' 
+});
 
-    gsap.from('.story-text', {
-      scrollTrigger: {
+    gsap.fromTo('.story-text', { y: 30, opacity: 0 }, { 
+scrollTrigger: {
         trigger: container.current,
         start: 'top 65%',
       },
-      opacity: 0,
-      y: 30,
       duration: 1,
       ease: 'power2.out',
-      delay: 0.2
-    });
+      delay: 0.2,
+ y: 0, opacity: 1, clearProps: 'all' 
+});
   }, { scope: container });
 
   const statement = "Accounting should be a proactive strategy, not a reactive compliance exercise.";

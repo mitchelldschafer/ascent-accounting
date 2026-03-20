@@ -9,17 +9,16 @@ export default function FooterCTA() {
   const container = useRef(null);
   
   useGSAP(() => {
-    gsap.from('.footer-anim', {
-      scrollTrigger: {
+    gsap.fromTo('.footer-anim', { y: 40, opacity: 0 }, { 
+scrollTrigger: {
         trigger: container.current,
         start: 'top 85%',
       },
-      y: 40,
-      opacity: 0,
       duration: 1,
       stagger: 0.1,
-      ease: 'power3.out'
-    });
+      ease: 'power3.out',
+ y: 0, opacity: 1, clearProps: 'all' 
+});
   }, { scope: container });
 
   return (

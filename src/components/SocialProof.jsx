@@ -27,17 +27,16 @@ export default function SocialProof() {
   const container = useRef(null);
   
   useGSAP(() => {
-    gsap.from('.sp-anim', {
-      scrollTrigger: {
+    gsap.fromTo('.sp-anim', { y: 40, opacity: 0 }, { 
+scrollTrigger: {
         trigger: container.current,
         start: 'top 80%',
       },
-      y: 40,
-      opacity: 0,
       duration: 1,
       stagger: 0.15,
-      ease: 'power3.out'
-    });
+      ease: 'power3.out',
+ y: 0, opacity: 1, clearProps: 'all' 
+});
   }, { scope: container });
 
   return (

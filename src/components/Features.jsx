@@ -109,17 +109,17 @@ function TimelineCard({ title, description }) {
   const container = useRef(null);
   
   useGSAP(() => {
-    gsap.from('.timeline-step', {
-      scrollTrigger: {
+    gsap.fromTo('.timeline-step', { y: 50, opacity: 0 }, { 
+scrollTrigger: {
         trigger: container.current,
         start: 'top 85%',
       },
-      opacity: 0,
       x: -15,
       stagger: 0.15,
       duration: 0.6,
-      ease: 'power2.out'
-    });
+      ease: 'power2.out',
+ y: 0, opacity: 1, clearProps: 'all' 
+});
   }, { scope: container });
 
   const steps = ["Discovery", "Strategy", "Execution", "Review"];

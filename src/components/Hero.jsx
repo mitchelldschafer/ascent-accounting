@@ -10,14 +10,13 @@ export default function Hero() {
 
   useGSAP(() => {
     // GSAP staggered fade-up animation for all text parts
-    gsap.from('.hero-anim', {
-      y: 35,
-      opacity: 0,
-      duration: 1.2,
+    gsap.fromTo('.hero-anim', { y: 35, opacity: 0 }, { 
+duration: 1.2,
       stagger: 0.09,
       ease: 'power3.out',
-      delay: 0.2, // slight delay on initial load
-    });
+      delay: 0.2, // slight delay on initial load,
+ y: 0, opacity: 1, clearProps: 'all' 
+});
   }, { scope: container });
 
   return (
