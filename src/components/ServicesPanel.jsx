@@ -1,5 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const services = [
   {
@@ -30,13 +35,29 @@ const services = [
 ];
 
 export default function ServicesPanel() {
+  const container = useRef(null);
+  
+  useGSAP(() => {
+    gsap.from('.service-anim', {
+      scrollTrigger: {
+        trigger: container.current,
+        start: 'top 80%',
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: 'power3.out'
+    });
+  }, { scope: container });
+
   const featured = services.find(s => s.featured);
   const secondary = services.filter(s => !s.featured);
 
   return (
-    <section className="w-full py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-surface" id="services">
+    <section ref={container} className="w-full py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-surface" id="services">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <div className="service-anim mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="max-w-2xl">
             <h2 className="font-heading font-bold text-3xl md:text-5xl text-obsidian mb-4">
               Practice Areas.
@@ -49,7 +70,7 @@ export default function ServicesPanel() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Featured Card */}
-          <div className="lg:col-span-12 bg-obsidian text-slate-white rounded-[2rem] p-10 md:p-14 flex flex-col justify-between group cursor-pointer hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+          <div className="service-anim lg:col-span-12 bg-obsidian text-slate-white rounded-[2rem] p-10 md:p-14 flex flex-col justify-between group cursor-pointer hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
             <div className="max-w-3xl">
               <h3 className="font-heading font-bold text-2xl md:text-4xl text-amber mb-6">{featured.title}</h3>
               <p className="font-ui text-lg md:text-xl text-slate-white/80 leading-relaxed mb-12">
@@ -64,7 +85,7 @@ export default function ServicesPanel() {
 
           {/* Secondary Cards in 2 columns */}
           {secondary.map((srv, idx) => (
-            <div key={idx} className="lg:col-span-6 bg-background border border-obsidian/5 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between group cursor-pointer hover:shadow-lg transition-all duration-500 hover:-translate-y-1 relative overflow-hidden">
+            <div key={idx} className="service-anim lg:col-span-6 bg-background border border-obsidian/5 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between group cursor-pointer hover:shadow-lg transition-all duration-500 hover:-translate-y-1 relative overflow-hidden">
               <div className="relative z-10">
                 <h3 className="font-heading font-bold text-xl md:text-2xl text-obsidian mb-4">{srv.title}</h3>
                 <p className="font-ui text-base text-graphite/70 mb-8 leading-relaxed">

@@ -1,27 +1,47 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export default function FooterCTA() {
+  const container = useRef(null);
+  
+  useGSAP(() => {
+    gsap.from('.footer-anim', {
+      scrollTrigger: {
+        trigger: container.current,
+        start: 'top 85%',
+      },
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.1,
+      ease: 'power3.out'
+    });
+  }, { scope: container });
+
   return (
-    <div className="w-full">
+    <div ref={container} className="w-full">
       {/* Consultation CTA */}
       <section id="contact" className="bg-obsidian w-full py-32 px-6 flex flex-col items-center text-center">
-        <h2 className="font-drama italic text-5xl md:text-7xl text-slate-white mb-4">
+        <h2 className="footer-anim font-drama italic text-5xl md:text-7xl text-slate-white mb-4">
           Ready to have a real conversation?
         </h2>
-        <p className="font-ui text-lg md:text-xl text-slate-white/70 mb-10">
+        <p className="footer-anim font-ui text-lg md:text-xl text-slate-white/70 mb-10">
           Confidential. No obligation. Partner-led.
         </p>
-        <a href="#contact" className="bg-amber text-obsidian px-8 py-4 rounded-full font-ui text-base font-semibold hover:scale-[1.02] transition-transform duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]">
+        <a href="#contact" className="footer-anim bg-amber text-obsidian px-8 py-4 rounded-full font-ui text-base font-semibold hover:scale-[1.02] transition-transform duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]">
           Schedule Consultation
         </a>
-        <p className="font-ui text-sm text-slate-white/50 mt-6 hidden md:block">
+        <p className="footer-anim font-ui text-sm text-slate-white/50 mt-6 hidden md:block">
           Or call us directly: (303) 555-0100
         </p>
       </section>
 
       {/* Footer */}
-      <footer className="bg-obsidian rounded-t-[3rem] px-8 pt-16 pb-8 border-t border-white/5">
+      <footer className="footer-anim bg-obsidian rounded-t-[3rem] px-8 pt-16 pb-8 border-t border-white/5">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
             <h3 className="font-heading font-bold text-3xl text-slate-white mb-2">Ascent Accounting</h3>

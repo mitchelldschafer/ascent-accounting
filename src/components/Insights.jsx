@@ -1,4 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const insights = [
   {
@@ -26,13 +31,29 @@ const insights = [
 ];
 
 export default function Insights() {
+  const container = useRef(null);
+  
+  useGSAP(() => {
+    gsap.from('.insight-anim', {
+      scrollTrigger: {
+        trigger: container.current,
+        start: 'top 80%',
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: 'power3.out'
+    });
+  }, { scope: container });
+
   const featured = insights.find(i => i.featured);
   const secondary = insights.filter(i => !i.featured);
 
   return (
-    <section className="w-full py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-surface" id="insights">
+    <section ref={container} className="w-full py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-surface" id="insights">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <div className="insight-anim mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
            <div>
              <h2 className="font-heading font-bold text-3xl md:text-5xl text-obsidian mb-4">
                Firm Insights.
@@ -49,7 +70,7 @@ export default function Insights() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Featured Article */}
-          <div className="lg:col-span-8 bg-near-white border border-obsidian/5 rounded-[2rem] overflow-hidden group cursor-pointer hover:shadow-xl transition-shadow duration-500 flex flex-col">
+          <div className="insight-anim lg:col-span-8 bg-near-white border border-obsidian/5 rounded-[2rem] overflow-hidden group cursor-pointer hover:shadow-xl transition-shadow duration-500 flex flex-col">
             <div className="h-64 md:h-80 w-full overflow-hidden relative">
               <img src={featured.image} alt="Data dashboard" className="w-full h-full object-cover grayscale mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-obsidian/10"></div>
@@ -72,7 +93,7 @@ export default function Insights() {
           {/* Secondary Articles */}
           <div className="lg:col-span-4 flex flex-col gap-6">
             {secondary.map((article, idx) => (
-              <div key={idx} className="bg-background border border-obsidian/5 rounded-[2rem] p-8 group cursor-pointer hover:shadow-lg transition-shadow duration-300 flex-grow flex flex-col justify-between">
+              <div key={idx} className="insight-anim bg-background border border-obsidian/5 rounded-[2rem] p-8 group cursor-pointer hover:shadow-lg transition-shadow duration-300 flex-grow flex flex-col justify-between">
                 <div>
                   <div className="flex justify-between items-center mb-4">
                     <span className="font-mono text-[10px] text-amber uppercase tracking-wider border border-amber/20 px-2 py-1 rounded-full">{article.tag}</span>
