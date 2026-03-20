@@ -32,23 +32,15 @@ export default function Process() {
     cards.forEach((card, i) => {
       if (i === cards.length - 1) return;
 
-      ScrollTrigger.create({
-        trigger: card,
-        start: 'top top',
-        endTrigger: '.process-container',
-        end: 'bottom bottom',
-        pin: true,
-        pinSpacing: false,
-      });
-
-      gsap.to(card, {
+      // Animate the inner card of the PREVIOUS card when the NEXT card scrolls over it
+      gsap.to(card.querySelector('.card-inner'), {
         scale: 0.91,
-        opacity: 0.55,
+        opacity: 0.45,
         filter: 'blur(10px)',
         scrollTrigger: {
           trigger: cards[i + 1],
-          start: 'top 80%',
-          end: 'top 10%',
+          start: 'top bottom', // when next card enters view
+          end: 'top top', // when next card touches top
           scrub: true,
         }
       });
@@ -56,9 +48,9 @@ export default function Process() {
   }, { scope: container });
 
   return (
-    <section className="process-container w-full bg-surface pb-32" ref={container}>
+    <section className="process-container w-full bg-surface pb-32 relative z-20" ref={container}>
       {/* Header section before stacking starts */}
-      <div className="w-full py-24 px-6 md:px-12 lg:px-24">
+      <div className="w-full py-24 px-6 md:px-12 lg:px-24 bg-surface relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-amber mb-6">
             <span className="w-6 h-[1px] bg-amber"></span>
@@ -70,13 +62,14 @@ export default function Process() {
         </div>
       </div>
 
-      <div className="w-full">
+      <div className="w-full relative">
         {phases.map((phase, idx) => (
           <div 
             key={idx} 
-            className="process-card w-full h-[100dvh] flex items-center justify-center p-6 bg-surface origin-top"
+            className="process-card sticky top-0 w-full h-[100dvh] flex items-center justify-center p-6 pt-24"
+            style={{ zIndex: 10 + idx }}
           >
-            <div className="max-w-5xl w-full h-full max-h-[600px] bg-nearWhite border border-obsidian/5 rounded-[3rem] p-12 md:p-20 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="card-inner max-w-5xl w-full h-full max-h-[600px] bg-near-white border border-obsidian/5 rounded-[3rem] p-12 md:p-20 shadow-[0_-20px_40px_-15px_rgba(0,0,0,0.08)] grid grid-cols-1 md:grid-cols-2 gap-12 items-center origin-top">
               
               <div className="hidden md:flex aspect-square w-full max-w-sm ml-auto bg-obsidian rounded-[2rem] items-center justify-center overflow-hidden relative group">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(201,155,58,0.1),transparent_70%)] opacity-50"></div>

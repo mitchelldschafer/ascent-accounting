@@ -46,8 +46,8 @@ export default function Philosophy() {
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-6">
-        <p className="phil-line font-ui font-medium text-lg md:text-xl lg:text-2xl text-slateWhite/60 mb-6 tracking-wide">
-          Most CPA firms focus on: <span className="text-slateWhite">historical compliance.</span>
+        <p className="phil-line font-ui font-medium text-lg md:text-xl lg:text-2xl text-slate-white/60 mb-6 tracking-wide">
+          Most CPA firms focus on: <span className="text-slate-white">historical compliance.</span>
         </p>
         <h2 className="phil-line font-drama italic text-4xl md:text-6xl lg:text-7xl text-white leading-[1.15]">
           We focus on: <span className="text-amber not-italic">architecting outcomes.</span>

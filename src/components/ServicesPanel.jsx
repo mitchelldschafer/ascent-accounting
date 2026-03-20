@@ -49,10 +49,10 @@ export default function ServicesPanel() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Featured Card */}
-          <div className="lg:col-span-12 bg-obsidian text-slateWhite rounded-[2rem] p-10 md:p-14 flex flex-col justify-between group cursor-pointer hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+          <div className="lg:col-span-12 bg-obsidian text-slate-white rounded-[2rem] p-10 md:p-14 flex flex-col justify-between group cursor-pointer hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
             <div className="max-w-3xl">
               <h3 className="font-heading font-bold text-2xl md:text-4xl text-amber mb-6">{featured.title}</h3>
-              <p className="font-ui text-lg md:text-xl text-slateWhite/80 leading-relaxed mb-12">
+              <p className="font-ui text-lg md:text-xl text-slate-white/80 leading-relaxed mb-12">
                 {featured.desc}
               </p>
             </div>

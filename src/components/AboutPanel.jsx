@@ -39,7 +39,7 @@ export default function AboutPanel() {
   const words = statement.split(' ');
 
   return (
-    <section ref={container} className="w-full py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-nearWhite overflow-hidden" id="about">
+    <section ref={container} className="w-full py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-near-white overflow-hidden" id="about">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
         
         {/* Left Side: Oversized Typographic Statement */}

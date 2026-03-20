@@ -35,9 +35,9 @@ function ShufflerCard({ title, description }) {
             <div 
               key={card.id} 
               className={`absolute w-full p-4 rounded-xl border transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]
-                ${isTop ? 'bg-obsidian text-slateWhite border-white/10 z-30 translate-y-0 scale-100 shadow-lg' : 
+                ${isTop ? 'bg-obsidian text-slate-white border-white/10 z-30 translate-y-0 scale-100 shadow-lg' : 
                 idx === 1 ? 'bg-background border-obsidian/10 z-20 translate-y-4 scale-95 shadow-sm opacity-80' : 
-                'bg-slateWhite border-obsidian/5 z-10 translate-y-8 scale-90 opacity-50'}`}
+                'bg-slate-white border-obsidian/5 z-10 translate-y-8 scale-90 opacity-50'}`}
             >
               <div className="font-ui font-semibold text-sm mb-1">{card.type}</div>
               <div className="font-ui text-xs opacity-70">{card.detail}</div>
@@ -133,7 +133,7 @@ function TimelineCard({ title, description }) {
         <div className="absolute left-[7px] top-6 bottom-4 w-[2px] bg-obsidian/10"></div>
         {steps.map((step, idx) => (
           <div key={idx} className="timeline-step flex items-center gap-4 relative z-10">
-            <div className="w-4 h-4 rounded-full bg-slateWhite border-[3px] border-amber shadow-sm flex-shrink-0"></div>
+            <div className="w-4 h-4 rounded-full bg-slate-white border-[3px] border-amber shadow-sm flex-shrink-0"></div>
             <div className="font-ui font-medium text-obsidian text-sm">{step}</div>
           </div>
         ))}

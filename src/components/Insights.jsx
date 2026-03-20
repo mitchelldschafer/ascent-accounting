@@ -49,7 +49,7 @@ export default function Insights() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Featured Article */}
-          <div className="lg:col-span-8 bg-nearWhite border border-obsidian/5 rounded-[2rem] overflow-hidden group cursor-pointer hover:shadow-xl transition-shadow duration-500 flex flex-col">
+          <div className="lg:col-span-8 bg-near-white border border-obsidian/5 rounded-[2rem] overflow-hidden group cursor-pointer hover:shadow-xl transition-shadow duration-500 flex flex-col">
             <div className="h-64 md:h-80 w-full overflow-hidden relative">
               <img src={featured.image} alt="Data dashboard" className="w-full h-full object-cover grayscale mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-obsidian/10"></div>
